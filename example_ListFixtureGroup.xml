@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="1.0.0.3">
+    <Plugin Name="example_ListFixtureGroup" Guid="00 15 5D F0 28 01 00 00 51 86 94 76 78 74 5A F1" Author="Roger Imhof" Version="1.0.0.0" Path="/examples">
+        <ComponentLua Name="example_ListFixtureGroup" Guid="00 15 5D F0 D7 2D 00 00 6B 86 94 76 38 4D 5C F1" FileName="example_ListFixtureGroup.lua">
+        </ComponentLua>
+    </Plugin>
+</GMA3>
