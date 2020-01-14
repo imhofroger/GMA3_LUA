@@ -1,0 +1,34 @@
+---------------------------------------------------------------------------
+local pluginName    = select(1,...);
+local componentName = select(2,...); 
+local signalTable   = select(3,...);
+local my_handle     = select(4,...);
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+function ListFixtureGroups()
+	local root = Root();
+	local FixtureGroups=root.ShowData.DataPools.Default.Groups:Children()
+
+	return FixtureGroups
+end
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+local function MyMain(display_handle)
+	local FixtureGroups = ListFixtureGroups();
+	
+	local choise = {};
+	for k in ipairs(FixtureGroups) do
+		table.insert(choise,"'"..FixtureGroups[k].name.."'")        
+	end
+	
+	library.PrintSystemMonitorMessage(2);
+	local ret = PopupInput("Select Plugin Option", display_handle, choise);
+	Cmd("SelFix Group '"..FixtureGroups[ret+1].name.."'")
+	
+end
+---------------------------------------------------------------------------
+return MyMain
+---------------------------------------------------------------------------
+
