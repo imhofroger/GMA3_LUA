@@ -5,8 +5,10 @@ Lua Scripts for Grandma3
 Some examples Lua Script for Grandma3
 
 ## Example List Fixture Group
-lists all existing groups in a selection. clicking on a group selects it.
+Lists all existing groups in a selection. clicking on a group selects it.
 
+## Example List all Colors
+Lists all defined Colors from a chosen Color GelGroup. Include Predefined Gel Groups like MA, Lee....
 
 ### Your Help
 if you like my scripts, I would appreciate a donation.
