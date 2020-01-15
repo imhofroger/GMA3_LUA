@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="1.0.0.3">
+    <Plugin Name="example_ListColorGel" Guid="00 15 5D F0 85 66 00 00 DA 8B 94 76 A0 0A 5F F1" Author="Roger Imhof" Version="0.0.0.0" Path="/examples">
+        <ComponentLua Name="example_ListColorGel" Guid="00 15 5D F0 6D 3C 00 00 D8 8B 94 76 41 8D 5F F1" FileName="example_list_color_gel.lua" />
+    </Plugin>
+</GMA3>
