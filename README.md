@@ -1,10 +1,11 @@
 # GMA3_LUA
 Lua Scripts for Grandma3
 
-
-Some examples Lua Script for Grandma3
+## Wiki
+Now are Parts documented on the [Wiki Page](https://github.com/imhofroger/GMA3_LUA/wiki).
 
 ## Examples
+Some examples Lua Script for Grandma3
 ### Example List Fixture Group
 Lists all existing groups in a selection. clicking on a group selects it.
 
