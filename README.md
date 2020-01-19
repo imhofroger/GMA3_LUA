@@ -10,7 +10,17 @@ Run Plugin
 ->Set start Sequence Number
 ->Add Group from List. multiple Groups Possible
 ->Choise ColorGel, Default or Custom. -> List
-->
+->Lets Go
+
+It Creates for each Group and Color a Sequence.
+Two Images, Color on and off.
+Each Color an Appereance, on and off.
+
+Every createt Sequence ar Assigned to a New Layout view, called Colors.
+
+![PrintScreen from the Colors Layout](https://github.com/imhofroger/GMA3_LUA/blob/master/CreateColorLayout/GMA3_Lua_ColorLayout.png)
+
+
 
 ## Examples
 Some examples Lua Script for Grandma3
