@@ -60,14 +60,13 @@ local function MyMain(display_handle)
   
   
   -- Define more
-  local intLayoutElementW=100
-  local intLayoutElementH=100
-  local intLayoutElementNr=1
-  local intAppNrNow
+  local intLayoutElementW=100 -- Layout Element Width
+  local intLayoutElementH=100 -- Layout Element Height
+  local intLayoutElementNr=1 -- Layout Element Nr.
+  local intAppNrSeq
   local intAppNrNeed
   local intAppCreatet = 0
   local tblColors
-  local strSeqName
   local strColorName
   local strColorCode
   local strAppNameOn
@@ -75,8 +74,8 @@ local function MyMain(display_handle)
   local strAppOn="\"Showdata.ImagePools.Custom.White-on\""
   local strAppOff="\"Showdata.ImagePools.Custom.White-off\""
   local intColornr
-  local selgroup
-  local choisefix
+  local intSelGroup
+  local tblGroupChoise
   local choiseGel
   local selColorGel 
   local SelectedGroup = {};
@@ -148,17 +147,17 @@ local function MyMain(display_handle)
 ---- Choise Fixture Group  
 	-- Create a Choise for each Group in Table
   ::addGroup::
-  choisefix = {};
+  tblGroupChoise = {};
 	for k in ipairs(FixtureGroups) do
-		table.insert(choisefix,"'"..FixtureGroups[k].name.."'")        
+		table.insert(tblGroupChoise,"'"..FixtureGroups[k].name.."'")        
 	end
 	-- Setup the Messagebox
 	library.PrintSystemMonitorMessage(2);
-	selgroup = PopupInput("Select Fixture Group", display_handle, choisefix, "", DisplayMidW,DisplayMidH);
-  table.insert(SelectedGroup,"'"..FixtureGroups[selgroup+1].name.."'")
-  Message = Message .. FixtureGroups[selgroup+1].name .."\n"
-  Printf("Select Group "..FixtureGroups[selgroup+1].name)
-  table.remove(FixtureGroups,selgroup+1)
+	intSelGroup = PopupInput("Select Fixture Group", display_handle, tblGroupChoise, "", DisplayMidW,DisplayMidH);
+  table.insert(SelectedGroup,"'"..FixtureGroups[intSelGroup+1].name.."'")
+  Message = Message .. FixtureGroups[intSelGroup+1].name .."\n"
+  Printf("Select Group "..FixtureGroups[intSelGroup+1].name)
+  table.remove(FixtureGroups,intSelGroup+1)
   goto MainBox
 ---- End Choise Fixture Group	
 
@@ -198,14 +197,29 @@ local function MyMain(display_handle)
   -- Create new Layout View
   tblLayoutNr = tblLayoutNr +1
   Cmd("Store Layout "..tblLayoutNr.." Colors")
+  -- end
   
   tblColors = ColorPath:Children()[SelectedGelNr]
   
   for g in ipairs(SelectedGroup) do
-  intAppNrNow = math.floor(intAppNr + 1);
+  intLayoutElementX=0 -- Y Position from first Elemement each Group
+  intLayoutElementY = math.floor(intLayoutElementY - intLayoutElementH) -- Max Y Position minus hight from element. 0 are at the Bottom!
+  
+  if(intAppCreatet==0) then
+    intAppNr = math.floor(intAppNr + 1);
+    Cmd("Store App "..intAppNr.." \"Label\" Appearance="..strAppOn.." color=\"0,0,0,1\"")
+    
+  end
+  
+  intAppNrSeq = math.floor(intAppNr + 1);
   intAppNrNeed = math.floor(intAppNr + 1);
-  intLayoutElementX=0
-  intLayoutElementY = math.floor(intLayoutElementY - intLayoutElementH)
+  
+  
+  Cmd("Assign Group "..SelectedGroup[g].." at Layout "..tblLayoutNr)
+  Cmd("Set Layout "..tblLayoutNr.."."..intLayoutElementNr.."Action=0 Appearance="..intAppNr.." Positionx="..intLayoutElementX.." Positiony="..intLayoutElementY.." Positionw="..intLayoutElementW.." Positionh="..intLayoutElementH.." Objectname=1 bar=0")
+  
+  intLayoutElementNr=math.floor(intLayoutElementNr + 1)
+  intLayoutElementX = math.floor(intLayoutElementX + intLayoutElementW + 20)
     for col in ipairs(tblColors) do
       strColorCode="\""..tblColors[col].r..","..tblColors[col].g..","..tblColors[col].b..",1\""
       strColorName=tblColors[col].name
@@ -215,32 +229,26 @@ local function MyMain(display_handle)
       if(intAppCreatet==0) then
         strAppNameOn="\""..strColorName.." on\""
         strAppNameOff="\""..strColorName.." off\""
-        Cmd("Store App "..intAppNrNow.." "..strAppNameOn.." Appearance="..strAppOn.." color="..strColorCode.."")
-        intAppNrNow = math.floor(intAppNrNow + 1);
-        Cmd("Store App "..intAppNrNow.." "..strAppNameOff.." Appearance="..strAppOff.." color="..strColorCode.."")
-        intAppNrNow = math.floor(intAppNrNow + 1);
+        Cmd("Store App "..intAppNrSeq.." "..strAppNameOn.." Appearance="..strAppOn.." color="..strColorCode.."")
+        intAppNrSeq = math.floor(intAppNrSeq + 1);
+        Cmd("Store App "..intAppNrSeq.." "..strAppNameOff.." Appearance="..strAppOff.." color="..strColorCode.."")
+        intAppNrSeq = math.floor(intAppNrSeq + 1);
       end
       -- end Appearances
 
       -- Create Sequences
-      strSeqName=strColorName.." "..SelectedGroup[g]:gsub('\'', '')
-      Cmd("clearall;Group "..SelectedGroup[g].." at Gel "..intColornr..";Store Sequence "..SeqNrStart.." \""..strSeqName.."\"")
+      Cmd("clearall;Group "..SelectedGroup[g].." at Gel "..intColornr..";Store Sequence "..SeqNrStart.." \""..strColorName.." "..SelectedGroup[g]:gsub('\'', '').."\"")
       -- Add Cmd to Squence
       Cmd("set seq "..SeqNrStart.." cue \"CueZero\" cmd=\"Set Layout "..tblLayoutNr.."."..intLayoutElementNr.." Appearance="..intAppNrNeed.."\"")
       Cmd("set seq "..SeqNrStart.." cue \"OffCue\" cmd=\"Set Layout "..tblLayoutNr.."."..intLayoutElementNr.." Appearance="..intAppNrNeed + 1 .."\"")
       -- end Sequences
       
       -- Add Squences to Layout
-      intAppNrNeed = math.floor(intAppNrNeed + 1); --Set Nr App to off
       Cmd("Assign Seq "..SeqNrStart.." at Layout "..tblLayoutNr)
-      Cmd("Set Layout "..tblLayoutNr.."."..intLayoutElementNr.." appearance="..intAppNrNeed.." Positionx="..intLayoutElementX.." Positiony="..intLayoutElementY.." Positionw="..intLayoutElementW.." Positionh="..intLayoutElementH.." Objectname=0 bar=0")
+      Cmd("Set Layout "..tblLayoutNr.."."..intLayoutElementNr.." appearance="..intAppNrNeed + 1 .." Positionx="..intLayoutElementX.." Positiony="..intLayoutElementY.." Positionw="..intLayoutElementW.." Positionh="..intLayoutElementH.." Objectname=0 bar=0")
       
-      
-      
-      intAppNrNeed = math.floor(intAppNrNeed + 1); --Set App Nr to next off
+      intAppNrNeed = math.floor(intAppNrNeed + 2); --Set App Nr to next color
       intLayoutElementX = math.floor(intLayoutElementX + intLayoutElementW + 20)
-      
-      
       
       intLayoutElementNr=math.floor(intLayoutElementNr + 1)
       -- end Squences to Layout
@@ -248,7 +256,7 @@ local function MyMain(display_handle)
       SeqNrStart = math.floor(SeqNrStart + 1)
     end
     intAppCreatet = 1
-    intLayoutElementY=math.floor(intLayoutElementY-20)
+    intLayoutElementY=math.floor(intLayoutElementY-20) -- Add offset for Layout Element distance
   end
   
 ---- end Appearances/Sequences 
@@ -256,7 +264,7 @@ local function MyMain(display_handle)
 
 ::cancle::
 end
-
+Cmd("ClearAll")
 --
 
 return MyMain
