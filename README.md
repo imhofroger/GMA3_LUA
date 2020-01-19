@@ -4,6 +4,9 @@ Lua Scripts for Grandma3
 ## Wiki
 Now are Parts documented on the [Wiki Page](https://github.com/imhofroger/GMA3_LUA/wiki).
 
+## CreateColorLayout
+This Script creates a Color layout, based on selected Groups and color gel.
+
 ## Examples
 Some examples Lua Script for Grandma3
 ### Example List Fixture Group
