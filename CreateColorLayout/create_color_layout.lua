@@ -38,8 +38,8 @@ local function MyMain(display_handle)
     intImageNr=0
   end
   local tbkImageImport = {
-    {Name="\"White-on\"",FileName="\"white-on.png\"",Filepath="\"../lib_plugins/CreateColorExec/images\""},
-    {Name="\"White-off\"",FileName="\"white-off.png\"",Filepath="\"../lib_plugins/CreateColorExec/images\""}
+    {Name="\"White-on\"",FileName="\"white-on.png\"",Filepath="\"../lib_plugins/CreateColorLayout/images\""},
+    {Name="\"White-off\"",FileName="\"white-off.png\"",Filepath="\"../lib_plugins/CreateColorLayout/images\""}
   }
   
   -- Store all Used Appearances in a Table to find free number

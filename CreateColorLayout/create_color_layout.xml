@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="1.0.0.3">
+    <Plugin Name="CreateColorLayout" Guid="F4 4D 30 4B 7C D8 00 00 82 E4 FE AE C4 0F C8 F7" Author="Roger Imhof." Version="0.8.0.0" Path="\CreateColorLayout">
+        <ComponentLua Name="CreateColorLayout" Guid="F4 4D 30 4B 4A DD 00 00 80 E4 FE AE F2 E8 C8 F7" FileName="create_color_layout.lua" />
+    </Plugin>
+</GMA3>
