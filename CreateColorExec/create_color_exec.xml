@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<GMA3 DataVersion="1.0.0.3">
-    <Plugin Name="CreateColorExec" Guid="F4 4D 30 4B 09 B0 00 00 0F C3 FE AE D8 61 31 F2" Author="Roger Imhof" Version="0.1.0.0" Path="\CreateColorExec">
-        <ComponentLua Name="CreateColorExec" Guid="F4 4D 30 4B C1 C9 00 00 0D C3 FE AE AA 3F 31 F2" FileName="create_color_exec.lua" />
-    </Plugin>
-</GMA3>
