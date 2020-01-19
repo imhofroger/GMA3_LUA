@@ -1,11 +1,16 @@
 # GMA3_LUA
-Lua Scripts for Grandma3
+Lua Scripts for grandMA3
 
 ## Wiki
 Now are Parts documented on the [Wiki Page](https://github.com/imhofroger/GMA3_LUA/wiki).
 
 ## CreateColorLayout
 This Script creates a Color layout, based on selected Groups and color gel.
+Run Plugin
+->Set start Sequence Number
+->Add Group from List. multiple Groups Possible
+->Choise ColorGel, Default or Custom. -> List
+->
 
 ## Examples
 Some examples Lua Script for Grandma3
