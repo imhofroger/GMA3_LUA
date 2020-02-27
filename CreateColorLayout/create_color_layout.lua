@@ -152,7 +152,6 @@ local function MyMain(display_handle)
 		table.insert(tblGroupChoise,"'"..FixtureGroups[k].name.."'")        
 	end
 	-- Setup the Messagebox
-	library.PrintSystemMonitorMessage(2);
 	intSelGroup = PopupInput("Select Fixture Group", display_handle, tblGroupChoise, "", DisplayMidW,DisplayMidH);
   table.insert(SelectedGroup,"'"..FixtureGroups[intSelGroup+1].name.."'")
   Message = Message .. FixtureGroups[intSelGroup+1].name .."\n"
@@ -169,7 +168,6 @@ local function MyMain(display_handle)
 		table.insert(choiseGel,"'"..ColorGels[k].name.."'")        
 	end
 	-- Setup the Messagebox
-	library.PrintSystemMonitorMessage(2);
 	selColorGel = PopupInput("Select ColorGel", display_handle, choiseGel, "", DisplayMidW,DisplayMidH);
   SelectedGel = ColorGels[selColorGel+1].name;
   SelectedGelNr = selColorGel+1
