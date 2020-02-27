@@ -33,7 +33,6 @@ local function MyMain(display_handle)
 	end
 	
 	-- Setup the Messagebox
-	library.PrintSystemMonitorMessage(2);
 	local ret = PopupInput("Select Plugin Option", display_handle, choise);
 	-- Select the Choised Group with Cmd
 	Cmd("SelFix Group '"..FixtureGroups[ret+1].name.."'")
