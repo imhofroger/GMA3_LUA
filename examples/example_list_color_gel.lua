@@ -25,7 +25,6 @@ local function MyMain(display_handle)
 	end
 	
 	-- Setup the Messagebox with Gel Groups to Choise
-	library.PrintSystemMonitorMessage(2);
 	local ret = PopupInput("Select Plugin Option", display_handle, choise);
 	
 	-- Write the Color from the chosen GelGroup
